@@ -1,0 +1,26 @@
+.Ril
+  float: right
+.Lil
+  float: left
+
+
+.contextmenu
+  max-height: 12em
+  overflow: auto
+  color: white
+  position: fixed
+  z-index: 9999
+  max-height: 13em
+  .contextmenu-command
+    display: inline-block
+    padding: 10px 15px
+    cursor: pointer
+    margin-top: 5px
+    background-color: rgba(0, 0, 0, 0)
+    width: 85%
+    text-align: center
+    transition: all 0.5s ease
+    &:hover, &:focus
+      background-color: rgba(0, 0, 0, 0.5)
+  .contextmenu-divider
+    border: solid 3px rgba(0, 0, 0, 0.5)

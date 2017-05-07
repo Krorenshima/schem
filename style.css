@@ -1,0 +1,73 @@
+.button, a, button, input[type="button"], input[type="submit"] {
+  padding: 10px 15px;
+  color: white;
+  margin: 3px;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.5s ease; }
+  .button:hover, a:hover, button:hover, input[type="button"]:hover, input[type="submit"]:hover, .button:focus, a:focus, button:focus, input[type="button"]:focus, input[type="submit"]:focus {
+    padding: 10px 20px; }
+
+.Ril {
+  float: right; }
+
+.Lil {
+  float: left; }
+
+.contextmenu {
+  max-height: 12em;
+  overflow: auto;
+  color: white;
+  position: fixed;
+  z-index: 9999;
+  max-height: 13em; }
+  .contextmenu .contextmenu-command {
+    display: inline-block;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-top: 5px;
+    background-color: transparent;
+    width: 85%;
+    text-align: center;
+    transition: all 0.5s ease; }
+    .contextmenu .contextmenu-command:hover, .contextmenu .contextmenu-command:focus {
+      background-color: rgba(0, 0, 0, 0.5); }
+  .contextmenu .contextmenu-divider {
+    border: solid 3px rgba(0, 0, 0, 0.5); }
+
+.header {
+  color: white;
+  font-weight: bolder;
+  z-index: 9999;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  transition: all ease 0.5s;
+  -webkit-app-region: drag; }
+  .header .title {
+    font-size: 25px;
+    padding-top: 15px;
+    padding-left: 5px; }
+  .header .header-button {
+    margin-right: 9px;
+    margin-left: 9px;
+    opacity: 0.5;
+    font-size: 23px;
+    cursor: pointer;
+    transition: all ease 0.5s; }
+    .header .header-button:hover, .header .header-button:focus {
+      opacity: 1; }
+
+* {
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  font-family: Arial;
+  text-decoration: none;
+  -webkit-appearance: none; }
+
+body {
+  background-color: rgba(0, 0, 0, 0.5); }
+
+/*# sourceMappingURL=style.css.map */
