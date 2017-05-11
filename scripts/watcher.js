@@ -1,8 +1,8 @@
 var chokidar = require('chokidar');
 var igs = {
-  ignored: /(^|[\/\\])\..|\.js|\.css|main\.js|\.ps1|\.sass-cache|style\.css/
+  ignored: /(^|[\/\\])\..|\.css|\.ps1|\.sass-cache|\.sassc|\.css\.map|style\.css/
 };
-var watcher = chokidar.watch(".", igs);
+var watcher = chokidar.watch("../", igs);
 watcher.on("all", function(ev, path) {
   if (ev === 'change') {
     location.reload();

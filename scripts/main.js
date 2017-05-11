@@ -8,7 +8,7 @@ ops = {width: 500, height: 500,
 create = function() {
   win = new BrowserWindow(ops);
   win.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
+    pathname: path.join(__dirname, '..', 'index.html'),
     protocol: 'file:', slashes: true}));
   win.on('closed', () => {win = null;});
 };

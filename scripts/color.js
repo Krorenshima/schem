@@ -5,7 +5,7 @@ color = {
   setColor: (...els) => {
     for (var index = 0; i < els.length; index++) {
       var el = els[index];
-      pen(el).Css("background-color", color.getColor());
+      pen(el).css("background-color", color.getColor());
     }
   },
   hexToRbg: (hex) => {
