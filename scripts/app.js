@@ -3,40 +3,45 @@ var color = require('./scripts/color'),
 {body, head} = document,
 {remote} = require('electron'),
 wind = remote.getCurrentWindow(),
-contextmenu = require('./scripts/context-menu'),
+ContextMenu = require('./scripts/context-menu'),
 header = require('./scripts/header'),
 watcher = require('./scripts/watcher');
 
-header.addButton("X", function(e) {
-  e.preventDefault()
-  wind.close()
-})
-.addButton("[_]", function(e) {
-  e.preventDefault()
-  wind.maximize()
-})
-.addButton("-", function(e) {
-  e.preventDefault()
-  wind.minimize()
-})
-.init()
+function Start () {
 
-pen(header.head).css("background-color", color.rgbOfWindow());
-pen(body).css({
-  height: `${window.innerHeight-5}px`
-})
-contextmenu.addCommand("reload", function(e) {
-  e.preventDefault()
-  location.reload()
-})
-.addCommand("openDevTools", function(e) {
-  e.preventDefault()
-  wind.openDevTools()
-})
-.addCommand("refresh", () => {})
+  header.add("X", function(e) {
+    e.preventDefault()
+    wind.close()
+  }, "button")
+  .add("[_]", function(e) {
+    e.preventDefault()
+    wind.maximize()
+  }, "button")
+  .add("-", function(e) {
+    e.preventDefault()
+    wind.minimize()
+  }, "button")
+  .init()
 
-addEventListener('keydown', e => {
-  if (e.key.match(/f5/gi)) {e.preventDefault();location.reload();}
-  if (e.key.match(/f12/gi)) {e.preventDefault();wind.openDevTools();}
-})
-addEventListener('contextmenu', contextmenu.init)
+  pen(header.head).css("background-color", color.rgbOfWindow());
+  pen(body).css({
+    height: `${window.innerHeight-5}px`,
+    border: `solid 1px ${color.rgbOfWindow()}`
+  })
+  ContextMenu.add("reload", function(e) {
+    e.preventDefault()
+    location.reload()
+  }, "button")
+  .add("openDevTools", function(e) {
+    e.preventDefault()
+    wind.openDevTools()
+  }, "button")
+
+  addEventListener('keydown', e => {
+    if (e.key.match(/f5/gi)) {e.preventDefault();location.reload();}
+    if (e.key.match(/f12/gi)) {e.preventDefault();wind.openDevTools();}
+  })
+  addEventListener('contextmenu', ContextMenu.init)
+}
+
+pen(document).on("DOMContentLoaded", Start)

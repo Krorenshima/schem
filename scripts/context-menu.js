@@ -1,45 +1,61 @@
 var color = require('./color')
-var contextmenu = {
-  commands: {},
-  menu: pen("div").class("contextmenu").el,
 
-  addCommand: function(cover, ev) {
-    var self = contextmenu
-    self.commands[cover] = {}
-    self.commands[cover].el = pen("span").html(cover).class("contextmenu-command").on("click", ev).el,
-    self.commands[cover].hr = pen("hr").class("contextmenu-divider").el
-    return contextmenu
+ var ContextMenu = {
+   commands: {},
+   menu: pen("div").class("contextmenu").el,
+
+   add: function (name, evhr, type, el) {
+     var self = ContextMenu
+     var temp, hr = pen("hr").class("contextmenu-divider").el
+     var prefix = "contextmenu-command"
+     if (type.match(/link/gi)) {
+       temp = pen("a").href(evhr).html(name).class(`${prefix} link`).el
+     } else if (type.match(/button/gi)) {
+       temp = pen("span").on("click", evhr).html(name).class(`${prefix}`).el
+     } else if (type.match(/custom/gi)) {
+       type(evhr) === 'function' ? temp = pen(el).on("click", evhr).html(name).class(`${prefix} custom`).el
+       : temp = pen(el).href(evhr).html(name).class(`${prefix} custom`).el
+     }
+     self.commands[name] = {el: temp, hr}
+     return self
+   },
+
+  removeCommand: function (name, fully=false) {
+    var self = ContextMenu
+    pen([self.commands[name].el, self.commands[name].hr]).remove()
+    fully === true ? delete self.commands[name] : void 0
+    return self
   },
 
-  removeCommand: function(name) {
-    var self = contextmenu
-    pen(self.commands[name].el).remove()
-    pen(self.commands[name].hr).remove()
-    return contextmenu
-  },
-
-  remove: function() {
-    var self = contextmenu
-    for (var name in self.commands) {
+  remove: function () {
+    var self = ContextMenu
+    for (name in self.commands) {
       self.removeCommand(name)
     }
-    pen(self.menu).remove()
-    return contextmenu
+    return self
   },
 
-  init: function(e) {
-    var self = contextmenu
+  init: function (e) {
+    var self = ContextMenu
     pen(self.menu).css({
       top: `${e.clientY}px`,
-      left: `${e.clientX}px`,
-      'background-color': color.rgbaOfWindow(1)})
+      left: `${e.clientX}px`
+    })
+
     for (var name in self.commands) {
       pen(self.menu).append(self.commands[name].el, self.commands[name].hr)
     }
-    pen(self.menu).appendTo(body)
+
     addEventListener("click", self.remove, {once: true})
-    return contextmenu
+    pen(body).append(self.menu)
+    return self
+  },
+
+  style: function (el, ...obj) {
+    var self = ContextMenu
+    el.match(/commands|cmds/gi) ? pen(self.commands[el]).css([...obj]) : pen(self[el].css([...obj]))
+    return self
   }
 }
 
-module.exports = contextmenu
+module.exports = ContextMenu

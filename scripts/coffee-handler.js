@@ -1,14 +1,3 @@
-var type = (function() {
-  classToType = {};
-  ref = "Boolean Number String Function Array Date RegExp Undefined Null Error Symbol".split(/\s+/);
-  for (let  i = 0; i < ref.length; i++) {
-    let name = ref[i];
-    classToType[`[object ${name}]`] = name.toLowerCase();
-  }
-  return function(obj) {
-    var strType = Object.prototype.toString.call(obj);
-    return classToType[strType] || "object";
-  };})();
 var fs = require('fs');
 var coffee_eval = (...code) => {
   if (type(code) === 'array') code = code.join('\n\n');
