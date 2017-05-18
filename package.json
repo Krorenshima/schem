@@ -5,7 +5,7 @@
   "main": "scripts/main.js",
   "productName": "Schem",
   "devDependencies": {
-    "electron": "1.6.7",
+    "electron": "1.6.8",
     "windows-titlebar-color": "1.1.1",
     "coffeescript": "2.0.0beta-1",
     "chokidar": "1.7.0"
