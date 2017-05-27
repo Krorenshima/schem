@@ -1,11 +1,17 @@
-var chokidar = require('chokidar');
-var igs = {
-  ignored: /(^|[\/\\])\..|\.css|\.ps1|\.sass-cache|\.sassc|\.css\.map|style\.css/
+var chokidar, igs, watcher;
+
+chokidar = require('chokidar');
+
+igs = {
+  ignored: /(^|[\/\\])\..|\.css|\.ps1|\.js|\.sass-cache|\.sassc|\.css\.map|style\.css/
 };
-var watcher = chokidar.watch("../", igs);
+
+watcher = chokidar.watch("../", igs);
+
 watcher.on("all", function(ev, path) {
   if (ev === 'change') {
     location.reload();
   }
 });
+
 module.exports = watcher;

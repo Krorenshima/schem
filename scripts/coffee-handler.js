@@ -1,37 +1,54 @@
-var fs = require('fs');
-var coffee_eval = (...code) => {
-  if (type(code) === 'array') code = code.join('\n\n');
+var check, coffee_eval, fs;
+
+fs = require('fs');
+
+coffee_eval = (...code) => {
+  var bare, err;
+  if (type(code) === 'array') {
+    code = code.join('\n\n');
+  }
   bare = (code) => {
+    var err;
     try {
-      code = require('coffeescript').compile(code, {bare:true})
-      return code
-    } catch (err) {
-      console.error(err)
-    }};
+      code = require('coffeescript').compile(code, {
+        bare: true
+      });
+      return code;
+    } catch (error) {
+      err = error;
+      return console.error(err);
+    }
+  };
   try {
-    code = eval(code)
-    return code
-  } catch (err) {
-    console.error(err)
+    code = eval(code);
+    return code;
+  } catch (error) {
+    err = error;
+    return console.error(err);
   }
 };
-var coffees;
 
 check = function() {
+  var code, codesrc, coffees, i, index, len, results, script;
   coffees = document.querySelectorAll("coffee-script, script[type='text/coffeescript']");
-  if (coffees.length >= 0) {
-    for (var index = 0; index < coffees.length; index++) {
-      console.log(`script index: ${index}`)
-      var script = coffees[index];
-      if (script.innerHTML.length === 0) {
-        if (script.getAttribute("src")) {
-          codesrc = coffee_eval(fs.readFileSync(script.getAttribute("src"), "utf8"));
+  results = [];
+  for (index = i = 0, len = coffees.length; i < len; index = ++i) {
+    script = coffees[index];
+    if (script != null) {
+      if (script.textContent.length === 0) {
+        if (script.getAttribute("src") != null) {
+          results.push(codesrc = coffee_eval(fs.readFileSync(script.getAttribute("src"), "utf8")));
+        } else {
+          results.push(void 0);
         }
       } else {
-        code = coffee_eval(script.innerHTML);
+        results.push(code = coffee_eval(script.textContent));
       }
+    } else {
+      results.push(void 0);
     }
   }
+  return results;
 };
 
 window.onload = check;

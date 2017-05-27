@@ -1,11 +1,11 @@
-.button, a, button, input[type="button"], input[type="submit"] {
+.button, .contextmenu .contextmenu-command, a, button, input[type="button"], input[type="submit"] {
   padding: 10px 15px;
   color: white;
   margin: 3px;
   display: inline-block;
   cursor: pointer;
   transition: all 0.5s ease; }
-  .button:hover, a:hover, button:hover, input[type="button"]:hover, input[type="submit"]:hover, .button:focus, a:focus, button:focus, input[type="button"]:focus, input[type="submit"]:focus {
+  .button:hover, .contextmenu .contextmenu-command:hover, a:hover, button:hover, input[type="button"]:hover, input[type="submit"]:hover, .button:focus, .contextmenu .contextmenu-command:focus, a:focus, button:focus, input[type="button"]:focus, input[type="submit"]:focus {
     padding: 10px 20px; }
 
 .Ril {
@@ -37,6 +37,23 @@
     -webkit-app-region: no-drag; }
     .header .header-button:hover, .header .header-button:focus {
       opacity: 1; }
+
+.contextmenu {
+  max-height: 13em;
+  overflow: auto;
+  color: white;
+  position: fixed;
+  z-index: 9999; }
+  .contextmenu .contextmenu-command {
+    padding: 10px 15px;
+    margin-top: 5px;
+    background-color: transparent;
+    transition: all 0.5s ease; }
+    .contextmenu .contextmenu-command:hover, .contextmenu .contextmenu-command:focus {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 15px 20px; }
+  .contextmenu .contextmenu-divider {
+    border: solid 3px rgba(0, 0, 0, 0.5); }
 
 * {
   padding: 0;

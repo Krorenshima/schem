@@ -1,61 +1,66 @@
-var color = require('./color')
-
- var ContextMenu = {
-   commands: {},
-   menu: pen("div").class("contextmenu").el,
-
-   add: function (name, evhr, type, el) {
-     var self = ContextMenu
-     var temp, hr = pen("hr").class("contextmenu-divider").el
-     var prefix = "contextmenu-command"
-     if (type.match(/link/gi)) {
-       temp = pen("a").href(evhr).html(name).class(`${prefix} link`).el
-     } else if (type.match(/button/gi)) {
-       temp = pen("span").on("click", evhr).html(name).class(`${prefix}`).el
-     } else if (type.match(/custom/gi)) {
-       type(evhr) === 'function' ? temp = pen(el).on("click", evhr).html(name).class(`${prefix} custom`).el
-       : temp = pen(el).href(evhr).html(name).class(`${prefix} custom`).el
-     }
-     self.commands[name] = {el: temp, hr}
-     return self
-   },
-
-  removeCommand: function (name, fully=false) {
-    var self = ContextMenu
-    pen([self.commands[name].el, self.commands[name].hr]).remove()
-    fully === true ? delete self.commands[name] : void 0
-    return self
-  },
-
-  remove: function () {
-    var self = ContextMenu
-    for (name in self.commands) {
-      self.removeCommand(name)
+(function(window, document) {
+  var body, color, contextmenu, head, test;
+  color = require('./color');
+  test = require('./test');
+  ({body, head} = document);
+  contextmenu = {
+    commands: {},
+    menu: pen('<div class="contextmenu">').attr('align', 'center'),
+    add: function(name, evhr, commandType = "button", el) {
+      var hr, prefix, self, temp;
+      self = contextmenu;
+      hr = pen('<hr class="contextmenu-divider">');
+      prefix = "contextmenu-command";
+      el = `<${el} class='${prefix} custom'>`;
+      if (commandType.match(/link/gi)) {
+        temp = pen(`<a href='${evhr}' class='${prefix} link'>`).html(name);
+      } else if (commandType.match(/button/gi)) {
+        temp = pen(`<span class='${prefix}'>`).on('click', evhr).html(name);
+      } else if (commandType.match(/custom/gi)) {
+        temp = type(evhr) === 'function' ? pen(el).on('click', evhr).html(name) : pen(el).href(evhr).html(name);
+      }
+      self.commands[name] = {};
+      self.commands[name].el = temp;
+      self.commands[name].hr = hr;
+      self.menu.append(self.commands[name].el, self.commands[name].hr);
+      return self;
+    },
+    removeCommand: function(name, fully = false) {
+      var self;
+      self = contextmenu;
+      self.commands[name].el.remove();
+      self.commands[name].hr.remove();
+      if (fully === true) {
+        delete self.commands[name];
+      } else {
+        void 0;
+      }
+      return self;
+    },
+    remove: function() {
+      var name, self;
+      self = contextmenu;
+      for (name in self.commands) {
+        self.removeCommand(name);
+      }
+      return self;
+    },
+    init: function(e) {
+      var name, self;
+      self = contextmenu;
+      self.menu.css({
+        top: `${e.clientY}px`,
+        left: `${e.clientX}px`
+      });
+      for (name in self.commands) {
+        self.menu.append(self.commands[name].el.element, self.commands[name].hr.element);
+      }
+      window.addEventListener('click', self.remove, {
+        once: true
+      });
+      pen(body).append(self.menu);
+      return self;
     }
-    return self
-  },
-
-  init: function (e) {
-    var self = ContextMenu
-    pen(self.menu).css({
-      top: `${e.clientY}px`,
-      left: `${e.clientX}px`
-    })
-
-    for (var name in self.commands) {
-      pen(self.menu).append(self.commands[name].el, self.commands[name].hr)
-    }
-
-    addEventListener("click", self.remove, {once: true})
-    pen(body).append(self.menu)
-    return self
-  },
-
-  style: function (el, ...obj) {
-    var self = ContextMenu
-    el.match(/commands|cmds/gi) ? pen(self.commands[el]).css([...obj]) : pen(self[el].css([...obj]))
-    return self
-  }
-}
-
-module.exports = ContextMenu
+  };
+  module.exports = contextmenu;
+})(window, document);

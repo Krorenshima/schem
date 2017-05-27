@@ -1,25 +1,32 @@
 {
-  "repository": "Monochromefx/schem",
-  "name": "Schem",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monochromefx/schem.git"
+  },
+  "name": "schem",
   "version": "1.4.4",
   "main": "scripts/main.js",
   "productName": "Schem",
   "devDependencies": {
-    "electron": "1.6.8",
-    "windows-titlebar-color": "1.1.1",
-    "coffeescript": "2.0.0beta-1",
-    "chokidar": "1.7.0"
+    "electron": "*"
   },
-  "dependencies": {},
-  "author": {
-    "name": "Monochromefx",
-    "email": "toxicibu@icloud.com"
+  "dependencies": {
+    "windows-titlebar-color": "*",
+    "coffeescript": "next",
+    "chokidar": "*"
   },
+  "author": "Monochromefx <toxicibu@icloud.com>",
   "scripts": {
     "build": "electron-packager .\\",
     "compileSass": "sass style.sass",
     "devSass": "sass -w style.sass",
     "open": "electron .\\",
     "devRun": "npm run devSass && npm run open"
-  }
+  },
+  "description": "[![Greenkeeper badge](https://badges.greenkeeper.io/Monochromefx/schem.svg)](https://greenkeeper.io/)",
+  "bugs": {
+    "url": "https://github.com/monochromefx/schem/issues"
+  },
+  "homepage": "https://github.com/monochromefx/schem#readme",
+  "license": "MIT"
 }

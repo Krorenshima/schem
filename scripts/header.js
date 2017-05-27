@@ -1,44 +1,52 @@
-var header = {
-  buttons: {},
-  head: pen("div").class("header").el,
-  title: pen("span").class("title").html(document.title).el,
-
-  add: function (name, evhr, type, el) {
-    var self = header
-    var temp
-    var prefix = "header-button"
-    if (type.match(/link/gi)) {
-      temp = pen("a").href(evhr).html(name).class(`${prefix} Ril link`).el
-    } else if (type.match(/button/gi)) {
-      temp = pen("span").on("click", evhr).html(name).class(`${prefix} Ril`).el
-    } else if (type.match(/custom/gi)) {
-      type(evhr) === 'function' ? temp = pen(el).on("click", evhr).html(name).class(`${prefix} Ril custom`).el
-      : temp = pen(el).href(evhr).html(name).class(`${prefix} Ril custom`).el
+(function(window) {
+  var body, head, header, test;
+  test = require('./test');
+  ({body, head} = document);
+  header = {
+    buttons: {},
+    head: pen('<div class="header">'),
+    title: pen('<span class="title Lil">').html(document.title),
+    add: function(name, evhr, buttonType = "button", el) {
+      var prefix, self, temp;
+      self = header;
+      prefix = "header-button";
+      el = `<${el} class='${prefix} custom Ril'>`;
+      if (buttonType.match(/link/gi)) {
+        temp = pen(`<a class='${prefix} link Ril' href='evhr'>`).html(name);
+      } else if (buttonType.match(/button/gi)) {
+        temp = pen(`<span class='${prefix} Ril'>`).on('click', evhr).html(name);
+      } else if (buttonType.match(/custom/gi)) {
+        temp = type(evhr) === 'function' ? pen(el).on('click', evhr).html(name) : pen(el).href(evhr).html(name);
+      }
+      self.buttons[name] = temp;
+      return self;
+    },
+    removeButton: function(name, fully) {
+      var self;
+      self = header;
+      pen(self.buttons[name]).remove();
+      if (fully === true) {
+        delete self.buttons[name];
+      } else {
+        void 0;
+      }
+      return self;
+    },
+    init: function() {
+      var brs, i, j, name, self;
+      self = header;
+      brs = [];
+      pen(self.head).append(self.title);
+      for (name in self.buttons) {
+        pen(self.head).append(self.buttons[name]);
+      }
+      pen(body).append(self.head);
+      for (i = j = 0; j <= 3; i = ++j) {
+        brs[i] = pen('<br>').el;
+        body.insertBefore(brs[i], body.childNodes[0]);
+      }
+      return self;
     }
-    self.buttons[name] = temp
-    return self
-  },
-
-  removeButton: function(name, fully = false) {
-    var self = header
-    pen(self.buttons[name].el).remove()
-    fully === true ? delete self.buttons[name] : void 0
-    return self
-  },
-
-  init: function() {
-    var self = header, brs = []
-    pen(header.head).append(header.title)
-    for (var name in header.buttons) {
-      pen(header.head).append(header.buttons[name])
-    }
-    for (var i = 0; i <= 3; i++) {
-      brs[i] = pen("br").el
-      document.body.insertBefore(brs[i], document.body.childNodes[0])
-    }
-    pen(document.body).el.insertBefore(header.head, document.body.childNodes[0])
-    return self
-  }
-}
-
-module.exports = header
+  };
+  module.exports = header;
+})(window);
