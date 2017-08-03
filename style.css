@@ -1,59 +1,69 @@
-.button, .contextmenu .contextmenu-command, a, button, input[type="button"], input[type="submit"] {
-  padding: 10px 15px;
-  color: white;
-  margin: 3px;
-  display: inline-block;
-  cursor: pointer;
-  transition: all 0.5s ease; }
-  .button:hover, .contextmenu .contextmenu-command:hover, a:hover, button:hover, input[type="button"]:hover, input[type="submit"]:hover, .button:focus, .contextmenu .contextmenu-command:focus, a:focus, button:focus, input[type="button"]:focus, input[type="submit"]:focus {
-    padding: 10px 20px; }
-
 .Ril {
   float: right; }
 
 .Lil {
   float: left; }
 
-.header {
-  color: white;
-  font-weight: bolder;
-  z-index: 9999;
-  width: 100%;
-  position: fixed;
+.header-container {
   top: 0;
-  transition: all ease 0.5s;
-  -webkit-app-region: drag; }
-  .header .title {
-    font-size: 25px;
-    padding-top: 15px;
-    padding-left: 5px; }
-  .header .header-button {
-    margin-right: 9px;
-    margin-left: 9px;
-    opacity: 0.5;
-    font-size: 23px;
-    cursor: pointer;
-    transition: all ease 0.5s;
-    -webkit-app-region: no-drag; }
-    .header .header-button:hover, .header .header-button:focus {
-      opacity: 1; }
-
-.contextmenu {
-  max-height: 13em;
-  overflow: auto;
-  color: white;
+  z-index: 9999;
   position: fixed;
-  z-index: 9999; }
-  .contextmenu .contextmenu-command {
-    padding: 10px 15px;
+  color: #dbdbdb;
+  background: #7a93e9;
+  -webkit-app-region: drag;
+  width: 100%;
+  display: block;
+  font-weight: bold;
+  transition: all 0.2s ease; }
+  .header-container:hover {
+    color: white; }
+  .header-container .title {
+    font-size: 20px;
+    padding-right: 15px;
+    padding-left: 5px;
+    float: left; }
+  .header-container .button {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    opacity: 0.5;
+    -webkit-app-region: no-drag;
+    float: right;
+    transition: all 0.2s ease; }
+    .header-container .button:hover {
+      opacity: 1; }
+  .header-container .close-button {
     margin-top: 5px;
-    background-color: transparent;
-    transition: all 0.5s ease; }
-    .contextmenu .contextmenu-command:hover, .contextmenu .contextmenu-command:focus {
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 15px 20px; }
-  .contextmenu .contextmenu-divider {
-    border: solid 3px rgba(0, 0, 0, 0.5); }
+    height: 15px;
+    transform: translateX(-15px); }
+    .header-container .close-button:hover [class="\\"], .header-container .close-button:hover [class="/"] {
+      background: #e81818; }
+    .header-container .close-button [class="\\"], .header-container .close-button [class="/"] {
+      height: 10px;
+      width: 0px;
+      padding: 2px;
+      background: #dbdbdb;
+      transition: all 0.2s ease;
+      display: block; }
+    .header-container .close-button [class="/"] {
+      transform: rotateZ(40deg); }
+    .header-container .close-button [class="\\"] {
+      transform: rotateZ(-40deg) translateY(-10px) translateX(9px); }
+  .header-container .maximize-button {
+    border: solid 3px #dbdbdb;
+    width: 10px;
+    height: 10px;
+    margin-top: 4px;
+    margin-right: 28px;
+    transition: all 0.2s ease; }
+  .header-container .minimize-button {
+    border-bottom: solid 3px #dbdbdb;
+    width: 10px;
+    height: 10px;
+    margin-top: 4px;
+    margin-right: 10px;
+    transition: all 0.2s ease; }
 
 * {
   padding: 0;

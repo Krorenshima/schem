@@ -1,6 +1,6 @@
-var BrowserWindow, app, create, globalShortcut, ops, path, remote, url, win;
+var BrowserWindow, app, create, globalShortcut, ipcMain, ops, path, remote, url, win;
 
-({app, BrowserWindow, globalShortcut, remote} = require('electron'));
+({app, BrowserWindow, globalShortcut, remote, ipcMain} = require('electron'));
 
 path = require('path');
 
@@ -14,6 +14,11 @@ ops = {
   frame: false,
   transparent: true
 };
+
+ipcMain.on('relaunch', function(ev, arg) {
+  app.relaunch();
+  return app.quit();
+});
 
 create = function() {
   win = new BrowserWindow(ops);

@@ -1,25 +1,66 @@
-.header
-  color: white
-  font-weight: bolder
-  z-index: 9999
-  width: 100%
-  position: fixed
+.header-container
   top: 0
-  transition: all ease 0.5s
+  z-index: 9999
+  position: fixed
+  color: rgb(219,219,219)
+  background: $main-color
   -webkit-app-region: drag
-
+  width: 100%
+  display: block
+  font-weight: bold
+  transition: all 0.2s ease
+  &:hover
+    color: white
   .title
-    font-size: 25px
-    padding-top: 15px
-    padding-left: 5px
-
-  .header-button
-    margin-right: 9px
-    margin-left: 9px
-    opacity: 0.5
-    font-size: 23px
+    font-size: 20px
+    padding:
+      right: 15px
+      left: 5px
+    float: left
+  .button
+    margin:
+      left: 5px
+      right: 5px
+      bottom: 5px
     cursor: pointer
-    transition: all ease 0.5s
+    opacity: 0.5
     -webkit-app-region: no-drag
-    &:hover, &:focus
+    float: right
+    transition: all 0.2s ease
+    &:hover
       opacity: 1
+  .close-button
+    margin-top: 5px
+    height: 15px
+    transform: translateX(-15px)
+    &:hover
+      [class="\\"], [class="/"]
+        background: rgb(232,24,24)
+    [class="\\"], [class="/"]
+      height: 10px
+      width: 0px
+      padding: 2px
+      background: rgb(219,219,219)
+      transition: all 0.2s ease
+      display: block
+
+    [class="/"]
+      transform: rotateZ(40deg)
+    [class="\\"]
+      transform: rotateZ(-40deg) translateY(-10px) translateX(9px)
+  .maximize-button
+    border: solid 3px rgb(219,219,219)
+    width: 10px
+    height: 10px
+    margin:
+      top: 4px
+      right: 28px
+    transition: all 0.2s ease
+  .minimize-button
+    border-bottom: solid 3px rgb(219,219,219)
+    width: 10px
+    height: 10px
+    margin:
+      top: 4px
+      right: 10px
+    transition: all 0.2s ease

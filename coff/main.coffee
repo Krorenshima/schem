@@ -1,10 +1,14 @@
-{app, BrowserWindow, globalShortcut, remote} = require 'electron'
+{app, BrowserWindow, globalShortcut, remote, ipcMain} = require 'electron'
 path = require 'path'
 url = require 'url'
 win = null
 ops =
   width: 500, height: 500,
   frame: no, transparent: yes
+
+ipcMain.on 'relaunch', (ev, arg) ->
+  app.relaunch()
+  app.quit()
 
 create = ->
   win = new BrowserWindow(ops)
