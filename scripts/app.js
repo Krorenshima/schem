@@ -1,4 +1,4 @@
-var body, dir, erorr, head, log, remote, watcher, wind;
+var body, dir, erorr, head, log, remote, wind;
 
 ({log, erorr, dir} = console);
 
@@ -7,5 +7,3 @@ var body, dir, erorr, head, log, remote, watcher, wind;
 ({remote} = require('electron'));
 
 wind = remote.getCurrentWindow();
-
-watcher = require('./scripts/watcher');

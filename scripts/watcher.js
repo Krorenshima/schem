@@ -6,10 +6,10 @@ chokidar = require('chokidar');
 
 win = remote.getCurrentWindow();
 
-st = "<link id=\"mainst\" rel=\"stylesheet\" href=\"style.css\">";
+st = "<link id=\"sty\" rel=\"stylesheet\" href=\"style.css\">";
 
 igs = {
-  ignored: /\.css|\.ps1|\.js|\.sass-cache|\.sassc|\.css\.map|style\.css/gi
+  ignored: /\.ps1|\.js|\.sass-cache|\.sassc|\.map|\.sass/gi
 };
 
 watcher = chokidar.watch(".", igs);
@@ -19,17 +19,15 @@ watcher.on("all", function(ev, path) {
   ext = path.split('.').pop();
   filenm = path.split('.')[0];
   if (ev === 'change') {
-    if (path === 'coffee\\main.coffee') {
+    if (path === 'coff\\main.coffee') {
       ipcRenderer.send('relaunch');
     } else {
       if (ext === 'css') {
         sty.remove();
-        document.head.innerHTML += "st";
-      } else if (ext !== 'sass') {
+        document.head.innerHTML += st;
+      } else if (ext !== 'css') {
         win.reload();
       }
     }
   }
 });
-
-module.exports = watcher;

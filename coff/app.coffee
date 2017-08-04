@@ -2,4 +2,3 @@
 {body, head} = document
 {remote} = require 'electron'
 wind = remote.getCurrentWindow()
-watcher = require './scripts/watcher'
