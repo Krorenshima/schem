@@ -8,7 +8,7 @@
   width: 100%
   display: block
   font-weight: bold
-  transition: all 0.2s ease
+  transition: $tran
   &:hover
     color: white
   .title
@@ -17,7 +17,9 @@
       right: 15px
       left: 5px
     float: left
-  .button
+  .btn
+    height: 10px
+    width: 10px
     margin:
       left: 5px
       right: 5px
@@ -26,7 +28,7 @@
     opacity: 0.5
     -webkit-app-region: no-drag
     float: right
-    transition: all 0.2s ease
+    transition: $tran
     &:hover
       opacity: 1
   .close-button
@@ -41,7 +43,7 @@
       width: 0px
       padding: 2px
       background: rgb(219,219,219)
-      transition: all 0.2s ease
+      transition: $tran
       display: block
 
     [class="/"]
@@ -50,17 +52,13 @@
       transform: rotateZ(-40deg) translateY(-10px) translateX(9px)
   .maximize-button
     border: solid 3px rgb(219,219,219)
-    width: 10px
-    height: 10px
     margin:
       top: 4px
       right: 28px
-    transition: all 0.2s ease
+    transition: $tran
   .minimize-button
     border-bottom: solid 3px rgb(219,219,219)
-    width: 10px
-    height: 10px
     margin:
       top: 4px
       right: 10px
-    transition: all 0.2s ease
+    transition: $tran

@@ -22,7 +22,9 @@
     padding-right: 15px;
     padding-left: 5px;
     float: left; }
-  .header-container .button {
+  .header-container .btn {
+    height: 10px;
+    width: 10px;
     margin-left: 5px;
     margin-right: 5px;
     margin-bottom: 5px;
@@ -31,7 +33,7 @@
     -webkit-app-region: no-drag;
     float: right;
     transition: all 0.2s ease; }
-    .header-container .button:hover {
+    .header-container .btn:hover {
       opacity: 1; }
   .header-container .close-button {
     margin-top: 5px;
@@ -52,15 +54,11 @@
       transform: rotateZ(-40deg) translateY(-10px) translateX(9px); }
   .header-container .maximize-button {
     border: solid 3px #dbdbdb;
-    width: 10px;
-    height: 10px;
     margin-top: 4px;
     margin-right: 28px;
     transition: all 0.2s ease; }
   .header-container .minimize-button {
     border-bottom: solid 3px #dbdbdb;
-    width: 10px;
-    height: 10px;
     margin-top: 4px;
     margin-right: 10px;
     transition: all 0.2s ease; }
@@ -75,6 +73,9 @@
   -webkit-appearance: none; }
 
 body {
-  background: rgba(78, 111, 226, 0.5); }
+  background: rgba(21, 46, 130, 0.5); }
+
+.wrapper {
+  margin-top: 35px; }
 
 /*# sourceMappingURL=style.css.map */

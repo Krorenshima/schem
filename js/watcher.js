@@ -1,12 +1,4 @@
-var chokidar, igs, ipcRenderer, remote, st, watcher, win;
-
-chokidar = require('chokidar');
-
-({remote, ipcRenderer} = require('electron'));
-
-win = remote.getCurrentWindow();
-
-st = "<link id=\"sty\" rel=\"stylesheet\" href=\"style.css\">";
+var igs, watcher;
 
 igs = {
   ignored: /\.ps1|\.js|\.sass-cache|\.sassc|\.map|\.sass/gi
@@ -20,14 +12,17 @@ watcher.on("all", function(ev, path) {
   filenm = path.split('.')[0];
   if (ev === 'change') {
     if (path === 'coff\\main.coffee') {
-      ipcRenderer.send('relaunch');
+      ipcren.send("relaunch");
     } else {
       if (ext === 'css') {
         sty.remove();
-        document.head.innerHTML += st;
-      } else if (ext !== 'css') {
+        pHead.append(sty);
+      } else if (ext === 'js') {
         win.reload();
       }
     }
+  }
+  if (ev === 'unlink') {
+    win.reload();
   }
 });

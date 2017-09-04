@@ -1,22 +1,31 @@
-{app, BrowserWindow, globalShortcut, remote, ipcMain} = require 'electron'
+{app, ipcMain, BrowserWindow} = require 'electron'
 path = require 'path'
 url = require 'url'
+
 win = null
 ops =
-  width: 500, height: 500,
-  frame: no, transparent: yes
+  width: 500
+  height: 500
+  transparent: yes
+  frame: no
 
-ipcMain.on 'relaunch', (ev, arg) ->
+ipcMain.on 'relaunch', (ev, arg) =>
   app.relaunch()
   app.quit()
+  return
 
-create = ->
-  win = new BrowserWindow(ops)
+create = () ->
+  win = new BrowserWindow ops
+
   win.loadURL url.format
-    pathname: "#{__dirname}/../index.html"
+    pathname: "./../index.html"
     protocol: 'file:'
-    slashes: true
-  win.on 'closed', () => win = null
+    slashes: yes
+
+  win.on 'closed', () ->
+    win = null
+    return
+
   return
 
 app.on 'ready', create
@@ -24,8 +33,7 @@ app.on 'ready', create
 app.on 'window-all-closed', () ->
   if process.platform isnt 'darwin'
     app.quit()
-  return
 
 app.on 'activate', () ->
-  if win is null
-    create()
+  if not win?
+    create

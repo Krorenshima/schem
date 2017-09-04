@@ -1,6 +1,6 @@
-var BrowserWindow, app, create, globalShortcut, ipcMain, ops, path, remote, url, win;
+var BrowserWindow, app, create, ipcMain, ops, path, url, win;
 
-({app, BrowserWindow, globalShortcut, remote, ipcMain} = require('electron'));
+({app, ipcMain, BrowserWindow} = require('electron'));
 
 path = require('path');
 
@@ -11,24 +11,24 @@ win = null;
 ops = {
   width: 500,
   height: 500,
-  frame: false,
-  transparent: true
+  transparent: true,
+  frame: false
 };
 
-ipcMain.on('relaunch', function(ev, arg) {
+ipcMain.on('relaunch', (ev, arg) => {
   app.relaunch();
-  return app.quit();
+  app.quit();
 });
 
 create = function() {
   win = new BrowserWindow(ops);
   win.loadURL(url.format({
-    pathname: `${__dirname}/../index.html`,
+    pathname: "./../index.html",
     protocol: 'file:',
     slashes: true
   }));
-  win.on('closed', () => {
-    return win = null;
+  win.on('closed', function() {
+    win = null;
   });
 };
 
@@ -36,12 +36,12 @@ app.on('ready', create);
 
 app.on('window-all-closed', function() {
   if (process.platform !== 'darwin') {
-    app.quit();
+    return app.quit();
   }
 });
 
 app.on('activate', function() {
-  if (win === null) {
-    return create();
+  if (win == null) {
+    return create;
   }
 });

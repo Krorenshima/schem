@@ -4,15 +4,13 @@
     "url": "git+https://github.com/monochromefx/schem.git"
   },
   "name": "schem",
-  "version": "1.4.4",
-  "main": "scripts/main.js",
+  "version": "1.4.5",
+  "main": "js/main.js",
   "productName": "Schem",
   "devDependencies": {
-    "electron": "*"
+    "electron": "1.6.11"
   },
   "dependencies": {
-    "windows-titlebar-color": "*",
-    "coffeescript": "next",
     "chokidar": "*"
   },
   "author": "Monochromefx <toxicibu@icloud.com>",
@@ -21,6 +19,8 @@
     "compileSass": "sass style.sass",
     "devSass": "sass -w style.sass",
     "open": "electron .\\",
+    "compileCoffee": "coffee --no-header -o js -bc coff",
+    "devCoffee": "coffee --no-header -o js -bwc coff",
     "devRun": "npm run devSass && npm run open"
   },
   "description": "[![Greenkeeper badge](https://badges.greenkeeper.io/Monochromefx/schem.svg)](https://greenkeeper.io/)",

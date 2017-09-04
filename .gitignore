@@ -2,3 +2,7 @@
 *.sassc
 *.css.map
 node_modules
+Schem-win32-x64
+*.bat
+*.cmd
+*.zip
