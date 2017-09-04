@@ -1,0 +1,16 @@
+{
+  "name": "downloader",
+  "version": "1.0.1",
+  "description": "handles downloads",
+  "main": "index.js",
+  "scripts": {
+    "compile": "coffee --no-header -bc ./",
+    "test": "node test/test.js"
+  },
+  "devDependencies": {
+    "node-fetch": "*"
+  },
+  "author": "monochromefx <official.chubbyroo@gmail.com>",
+  "license": "MIT",
+  "dependencies": {}
+}

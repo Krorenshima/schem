@@ -1,8 +1,8 @@
 *.sass-cache
 *.sassc
 *.css.map
-node_modules
 Schem-win32-x64
+node_modules
 *.bat
 *.cmd
 *.zip
