@@ -11,7 +11,7 @@
     "electron": "1.7.9"
   },
   "dependencies": {
-    "chokidar": "*"
+    "chokidar": ">=2.0.0"
   },
   "author": "Monochromefx <toxicibu@icloud.com>",
   "scripts": {
