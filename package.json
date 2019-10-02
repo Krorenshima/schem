@@ -8,12 +8,12 @@
   "main": "js/main.js",
   "productName": "Schem",
   "devDependencies": {
-    "electron": "2.0.6"
+    "electron": "*"
   },
   "dependencies": {
     "chokidar": "*"
   },
-  "author": "Monochromefx <toxicibu@icloud.com>",
+  "author": "Krorenshima <toxicibu@icloud.com>",
   "scripts": {
     "build": "electron-packager .\\",
     "compileSass": "sass style.sass",
