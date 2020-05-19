@@ -8,7 +8,7 @@
   "main": "js/main.js",
   "productName": "Schem",
   "devDependencies": {
-    "electron": "*"
+    "electron": ">=9.0.0"
   },
   "dependencies": {
     "chokidar": "*"
